@@ -1,10 +1,15 @@
 use crate::token_type::TokenType;
-use std::any::Any;
 
 #[derive(Debug)]
-pub(crate) struct Token {
+pub(crate) enum Literal {
+    StrLiteral(String),
+    IntLiteral(u32),
+}
+
+#[derive(Debug)]
+pub struct Token {
     pub(crate) token_type: TokenType,
     pub(crate) lexeme: String,
-    pub(crate) literal: Box<dyn Any>,
-    pub(crate) line: u8,
+    pub(crate) literal: Option<Literal>,
+    pub(crate) line: u32,
 }

@@ -1,6 +1,8 @@
+mod scanner;
 mod token;
 mod token_type;
 
+use crate::scanner::Scanner;
 use crate::token::Token;
 
 use clap::Parser;
@@ -35,9 +37,18 @@ fn run_interpreter() {
 }
 
 fn run(input: &str) {
-    scanner: Scanner = Scanner {};
-    let tokens: Vec<Token> = scanner.scan_tokens();
-    println!("{}", input);
+    let mut scanner = Scanner {
+        source: input.trim_end().to_string(),
+        tokens: vec![],
+        line: 1,
+        start_pos: 0,
+        current_pos: 0,
+        pos_x: 0,
+    };
+    let tokens: &Vec<Token> = scanner.scan_tokens();
+    for token in tokens {
+        println!("{:?}", token);
+    }
 }
 
 fn main() {
