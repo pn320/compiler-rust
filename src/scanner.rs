@@ -32,7 +32,7 @@ impl Scanner {
     }
 
     fn is_at_end(&self) -> bool {
-        self.current_pos >= self.source.len() as u32
+        self.current_pos >= (self.source.len() - 1) as u32
     }
 
     fn scan_token(&mut self) -> () {
@@ -109,7 +109,6 @@ impl Scanner {
     }
 
     fn string_literal_scan(&mut self) {
-        use crate::token::Literal::{IntLiteral, StrLiteral};
         loop {
             if self.peek() != '"' && !self.is_at_end() {
                 if self.peek() == '\n' {
@@ -122,8 +121,10 @@ impl Scanner {
         }
         if self.is_at_end() {
             self.error_report("Unterminated string".to_string());
+            return;
         }
 
+        // to get the closing double quotes
         self.advance();
         let literal =
             self.source[(self.start_pos + 1) as usize..(self.current_pos - 1) as usize].to_string();
@@ -175,11 +176,16 @@ impl Scanner {
     }
 
     fn report_line(&self, message: String) -> () {
-        println!("{}: {}", "Syntax error".red(), message);
+        println!("{}:", "Error".red());
         let error_source = self.source.split("\n").nth((self.line - 1) as usize).unwrap();
         println!("   {} | {}", self.line, error_source);
-        let ptr_arrows = format!("^---").red();
+        let error_arrow_msg = format!("^---").red();
         let shift_amt = 7;
-        println!("   {: >width$}", ptr_arrows, width = (self.pos_x + shift_amt) as usize);
+        println!(
+            "   {: >width$} {}",
+            error_arrow_msg,
+            message,
+            width = (self.pos_x + shift_amt) as usize
+        );
     }
 }
