@@ -1,5 +1,5 @@
-#[derive(Debug)]
-pub(crate) enum TokenType {
+#[derive(Debug, Clone)]
+pub enum TokenType {
     // Single-character tokens.
     LeftParen,
     RightParen,
@@ -11,11 +11,9 @@ pub(crate) enum TokenType {
     Plus,
     SemiColon,
     Slash,
-    Space,
     Asterisk,
     CarriageReturn,
     Tab,
-    Newline,
 
     // One or two character tokens.
     Bang,
@@ -30,7 +28,7 @@ pub(crate) enum TokenType {
     // Literals.
     Identifier,
     String,
-    Number,
+    Integer,
 
     // Keywords.
     And,
@@ -40,14 +38,14 @@ pub(crate) enum TokenType {
     Function,
     For,
     If,
-    Nil,
+    None,
     Or,
     Print,
     Return,
     Super,
     This,
     True,
-    Var,
+    Let,
     While,
 
     EOF,
