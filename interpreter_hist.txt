@@ -17,3 +17,19 @@ print("hello, world)
 print("hello, world
 print("hello, world)
 print("hello, world"
+print("hello, world")
+a = 5
+let a = 5
+class Something:
+class Something {}
+class Token {}
+print("hello, world")
+print("hello, world)
+print("hello, world\\)
+print("hello, world")
+let a = 5
+3 + 4l
+3 + 4;
+print()
+print("")
+fn add(x, y) {return x + y};

@@ -45,6 +45,7 @@ pub enum TokenType {
     Super,
     This,
     True,
+    Struct,
     Let,
     While,
 

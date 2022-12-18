@@ -2,11 +2,11 @@
 
 mod ast;
 mod parser;
-mod scanner;
+mod tokenizer;
 mod token;
 mod token_type;
 
-use crate::scanner::Scanner;
+use crate::tokenizer::Scanner;
 use crate::token::Token;
 
 use crate::token_type::TokenType;
@@ -35,7 +35,7 @@ fn run_interpreter() -> Result<()> {
     println!(
         "{} {} {}",
         format!("Welcome to"),
-        format!("Smpl(s)").green(),
+        format!("Monk(s)").green(),
         format!("interpreter. A simple programming language")
     );
     let mut rl = Editor::<()>::new()?;
@@ -54,7 +54,7 @@ fn run_interpreter() -> Result<()> {
                 break;
             }
             Err(ReadlineError::Eof) => {
-                println!("Exiting SmplC, thanks for playing!");
+                println!("Exiting Monk!");
                 break;
             }
             Err(err) => {
@@ -79,6 +79,7 @@ fn init_keywords_hash_map() -> HashMap<String, TokenType> {
     let keywords: HashMap<String, TokenType> = HashMap::from([
         ("and".to_string(), TokenType::And),
         ("class".to_string(), TokenType::Class),
+        ("struct".to_string(), TokenType::Struct),
         ("else".to_string(), TokenType::Else),
         ("false".to_string(), TokenType::False),
         ("for".to_string(), TokenType::For),

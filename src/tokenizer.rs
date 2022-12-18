@@ -1,4 +1,3 @@
-use crate::token::Literal;
 use crate::token::Literal::{IntLiteral, StrLiteral};
 use crate::token_type::TokenType;
 use crate::Token;
@@ -6,6 +5,7 @@ use std::collections::HashMap;
 
 use colored::Colorize;
 use std::string::String;
+use crate::token::Literal;
 
 pub struct Scanner {
     source: String,
@@ -13,7 +13,7 @@ pub struct Scanner {
     line: u32,
     start_pos: u32,
     current_pos: u32,
-    // separation of pos_x and current_pos for error reporting
+    // mostly for error reporting
     col_offset: u32,
     keywords_map: HashMap<String, TokenType>,
 }
@@ -99,6 +99,7 @@ impl Scanner {
                 }
             }
             '"' => self.string_literal_scan(),
+            '\'' => self.string_literal_scan(),
             '\r' => self.add_token(TokenType::CarriageReturn),
             '\t' => self.add_token(TokenType::Tab),
             '\n' => {
@@ -159,7 +160,7 @@ impl Scanner {
 
     fn string_literal_scan(&mut self) {
         loop {
-            if self.peek() != '"' && !self.is_at_end() {
+            if self.peek() != '"' && self.peek() != '\'' && !self.is_at_end() {
                 if self.peek() == '\n' {
                     self.line += 1;
                 }
