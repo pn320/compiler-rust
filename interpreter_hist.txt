@@ -33,3 +33,4 @@ let a = 5
 print()
 print("")
 fn add(x, y) {return x + y};
+print('hello, world!)

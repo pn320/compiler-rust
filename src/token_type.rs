@@ -32,7 +32,6 @@ pub enum TokenType {
 
     // Keywords.
     And,
-    Class,
     Else,
     False,
     Function,
@@ -42,7 +41,6 @@ pub enum TokenType {
     Or,
     Print,
     Return,
-    Super,
     This,
     True,
     Struct,

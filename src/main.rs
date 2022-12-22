@@ -78,7 +78,6 @@ fn run(input: &str) -> Result<()> {
 fn init_keywords_hash_map() -> HashMap<String, TokenType> {
     let keywords: HashMap<String, TokenType> = HashMap::from([
         ("and".to_string(), TokenType::And),
-        ("class".to_string(), TokenType::Class),
         ("struct".to_string(), TokenType::Struct),
         ("else".to_string(), TokenType::Else),
         ("false".to_string(), TokenType::False),
@@ -89,7 +88,6 @@ fn init_keywords_hash_map() -> HashMap<String, TokenType> {
         ("or".to_string(), TokenType::Or),
         ("print".to_string(), TokenType::Print),
         ("return".to_string(), TokenType::Return),
-        ("super".to_string(), TokenType::Super),
         ("this".to_string(), TokenType::This),
         ("true".to_string(), TokenType::True),
         ("let".to_string(), TokenType::Let),

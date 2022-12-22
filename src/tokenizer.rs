@@ -3,9 +3,9 @@ use crate::token_type::TokenType;
 use crate::Token;
 use std::collections::HashMap;
 
+use crate::token::Literal;
 use colored::Colorize;
 use std::string::String;
-use crate::token::Literal;
 
 pub struct Scanner {
     source: String,
